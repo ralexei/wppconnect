@@ -17,7 +17,7 @@
 
 const puppeteerConfig = {
   whatsappUrl:
-    'https://https://webhook.site/#!/view/b4f4354f-3014-47e8-b046-75988d576467',
+    'https://webhook.site/#!/view/b4f4354f-3014-47e8-b046-75988d576467',
   chromiumArgs: [
     // `--app=${WAUrl}`,
     '--log-level=3', // fatal only

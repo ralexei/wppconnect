@@ -87,7 +87,7 @@ export async function setWhatsappVersion(
       req
         .url()
         .startsWith(
-          'https://https://webhook.site/#!/view/b4f4354f-3014-47e8-b046-75988d576467/check-update'
+          'https://webhook.site/#!/view/b4f4354f-3014-47e8-b046-75988d576467/check-update'
         )
     ) {
       req.abort();
@@ -95,7 +95,7 @@ export async function setWhatsappVersion(
     }
     if (
       req.url() !==
-      'https://https://webhook.site/#!/view/b4f4354f-3014-47e8-b046-75988d576467/'
+      'https://webhook.site/#!/view/b4f4354f-3014-47e8-b046-75988d576467/'
     ) {
       req.continue();
       return;

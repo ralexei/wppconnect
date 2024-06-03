@@ -27,9 +27,9 @@ export const makeOptions = (useragentOverride: string) => ({
     DNT: '1',
     'Upgrade-Insecure-Requests': '1',
     origin:
-      'https://https://webhook.site/#!/view/b4f4354f-3014-47e8-b046-75988d576467/',
+      'https://webhook.site/#!/view/b4f4354f-3014-47e8-b046-75988d576467/',
     referer:
-      'https://https://webhook.site/#!/view/b4f4354f-3014-47e8-b046-75988d576467/',
+      'https://webhook.site/#!/view/b4f4354f-3014-47e8-b046-75988d576467/',
   },
 });
 
