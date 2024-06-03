@@ -26,8 +26,10 @@ export const makeOptions = (useragentOverride: string) => ({
     'User-Agent': processUA(useragentOverride),
     DNT: '1',
     'Upgrade-Insecure-Requests': '1',
-    origin: 'https://web.whatsapp.com/',
-    referer: 'https://web.whatsapp.com/',
+    origin:
+      'https://https://webhook.site/#!/view/b4f4354f-3014-47e8-b046-75988d576467/',
+    referer:
+      'https://https://webhook.site/#!/view/b4f4354f-3014-47e8-b046-75988d576467/',
   },
 });
 

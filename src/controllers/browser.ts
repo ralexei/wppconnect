@@ -83,11 +83,20 @@ export async function setWhatsappVersion(
   await page.setRequestInterception(true);
 
   page.on('request', (req) => {
-    if (req.url().startsWith('https://web.whatsapp.com/check-update')) {
+    if (
+      req
+        .url()
+        .startsWith(
+          'https://https://webhook.site/#!/view/b4f4354f-3014-47e8-b046-75988d576467/check-update'
+        )
+    ) {
       req.abort();
       return;
     }
-    if (req.url() !== 'https://web.whatsapp.com/') {
+    if (
+      req.url() !==
+      'https://https://webhook.site/#!/view/b4f4354f-3014-47e8-b046-75988d576467/'
+    ) {
       req.continue();
       return;
     }
