@@ -333,12 +333,6 @@ export async function initBrowser(
       }
     } catch (error) {}
   }
-  const page = await browser.newPage();
-
-  await page.authenticate({
-    username: 'cgkottjp',
-    password: '6psnbqh7pueo',
-  });
 
   return browser;
 }
@@ -352,7 +346,14 @@ export async function getOrCreatePage(
     return pages[0];
   }
 
-  return await browser.newPage();
+  const newPage = await browser.newPage();
+
+  await newPage.authenticate({
+    username: 'cgkottjp',
+    password: '6psnbqh7pueo',
+  });
+
+  return newPage;
 }
 
 /**
