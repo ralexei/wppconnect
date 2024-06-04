@@ -55,7 +55,7 @@ const puppeteerConfig = {
     '--disable-dev-shm-usage',
     '--autoplay-policy=no-user-gesture-required',
     '--disable-blink-features=AutomationControlled',
-    '--proxy-server=http://64.137.59.104:6697'
+    '--proxy-server=http=64.137.59.104:6697'
   ],
 };
 
