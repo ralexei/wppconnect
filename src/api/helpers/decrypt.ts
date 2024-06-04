@@ -20,16 +20,19 @@ import hkdf from 'futoin-hkdf';
 import atob = require('atob');
 import { ResponseType } from 'axios';
 
-export const makeOptions = (useragentOverride: string) => ({
-  responseType: 'arraybuffer' as ResponseType,
-  headers: {
-    'User-Agent': processUA(useragentOverride),
-    DNT: '1',
-    'Upgrade-Insecure-Requests': '1',
-    origin: 'https://webhook.site/b4f4354f-3014-47e8-b046-75988d576467/',
-    referer: 'https://webhook.site/b4f4354f-3014-47e8-b046-75988d576467/',
-  },
-});
+export const makeOptions = (useragentOverride: string) => {
+  const whatsAppUrl = process?.env?.WHATSAPP_URL ?? 'https://web.whatsapp.com';
+  return {
+    responseType: 'arraybuffer' as ResponseType,
+    headers: {
+      'User-Agent': processUA(useragentOverride),
+      DNT: '1',
+      'Upgrade-Insecure-Requests': '1',
+      origin: `${whatsAppUrl}/`,
+      referer: `${whatsAppUrl}/`,
+    },
+  };
+};
 
 export const timeout = (ms: number) =>
   new Promise((res) => setTimeout(res, ms));

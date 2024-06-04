@@ -16,7 +16,7 @@
  */
 
 const puppeteerConfig = {
-  whatsappUrl: 'https://webhook.site/b4f4354f-3014-47e8-b046-75988d576467',
+  whatsappUrl: process?.env?.WHATSAPP_URL ?? 'https://web.whatsapp.com',
   chromiumArgs: [
     // `--app=${WAUrl}`,
     '--log-level=3', // fatal only
@@ -55,7 +55,6 @@ const puppeteerConfig = {
     '--disable-dev-shm-usage',
     '--autoplay-policy=no-user-gesture-required',
     '--disable-blink-features=AutomationControlled',
-    '--proxy-server=http://64.137.59.104:6697'
   ],
 };
 

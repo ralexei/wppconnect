@@ -82,20 +82,14 @@ export async function setWhatsappVersion(
 
   await page.setRequestInterception(true);
 
+  const whatsAppUrl = puppeteerConfig.whatsappUrl;
+
   page.on('request', (req) => {
-    if (
-      req
-        .url()
-        .startsWith(
-          'https://webhook.site/b4f4354f-3014-47e8-b046-75988d576467/check-update'
-        )
-    ) {
+    if (req.url().startsWith(`${whatsAppUrl}/check-update`)) {
       req.abort();
       return;
     }
-    if (
-      req.url() !== 'https://webhook.site/b4f4354f-3014-47e8-b046-75988d576467/'
-    ) {
+    if (req.url() !== `${whatsAppUrl}/`) {
       req.continue();
       return;
     }
@@ -297,6 +291,22 @@ export async function initBrowser(
     const transport = await getTransport(options.browserWS);
     browser = await puppeteer.connect({ transport });
   } else {
+    let args = options.browserArgs
+      ? options.browserArgs
+      : [...puppeteerConfig.chromiumArgs];
+
+    // Replace proxy-server address with the one from environment if present
+    console.log('BEFORE REPLACE');
+    console.log(args);
+    if (process.env.PROXY_URL) {
+      console.log('REPLACING');
+      args = removeBrowserArg(args, 'proxy-server');
+      args.push(`--proxy-server=${process.env.PROXY_URL}`);
+    }
+
+    console.log('AFTER REPLACE');
+    console.log(args);
+
     /**
      * Setting the headless mode to the old Puppeteer mode, when using the 'new' mode, results in an error on CentOS7 and Debian11.
      * Temporary fix.
@@ -304,9 +314,7 @@ export async function initBrowser(
     browser = await puppeteer.launch({
       headless: options.headless,
       devtools: options.devtools,
-      args: options.browserArgs
-        ? options.browserArgs
-        : [...puppeteerConfig.chromiumArgs],
+      args: args,
       ...options.puppeteerOptions,
     });
 
@@ -344,16 +352,46 @@ export async function getOrCreatePage(
   let newPage = null;
   if (pages.length) {
     newPage = pages[0];
+  } else {
+    newPage = await browser.newPage();
   }
 
-  newPage = await browser.newPage();
+  const proxyUser = process.env.PROXY_USER;
+  const proxyPassword = process.env.PROXY_PWD;
 
-  await newPage.authenticate({
-    username: 'cgkottjp',
-    password: '6psnbqh7pueo',
-  }); 
+  if (proxyUser && proxyPassword) {
+    await newPage.authenticate({
+      username: proxyUser,
+      password: proxyPassword,
+    });
+  }
 
   return newPage;
+}
+
+function getBrowserArgValue(
+  args: string[],
+  argName: string
+): string | undefined {
+  if (!args || args.length == 0) {
+    return undefined;
+  }
+
+  return args.find((f) => f.indexOf(argName) > -1);
+}
+
+function removeBrowserArg(args: string[], argName: string): string[] {
+  if (!args || args.length == 0) {
+    return args;
+  }
+
+  const indexOfArg = args.indexOf(args.find((f) => f.indexOf(argName) > -1));
+
+  if (indexOfArg > -1) {
+    args.splice(indexOfArg, 1);
+  }
+
+  return args;
 }
 
 /**
