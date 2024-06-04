@@ -341,17 +341,17 @@ export async function getOrCreatePage(
   browser: Browser | BrowserContext
 ): Promise<Page> {
   const pages = await browser.pages();
-
+  let newPage = null;
   if (pages.length) {
-    return pages[0];
+    newPage = pages[0];
   }
 
-  const newPage = await browser.newPage();
+  newPage = await browser.newPage();
 
   await newPage.authenticate({
     username: 'cgkottjp',
     password: '6psnbqh7pueo',
-  });
+  }); 
 
   return newPage;
 }
