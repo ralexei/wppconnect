@@ -26,10 +26,8 @@ export const makeOptions = (useragentOverride: string) => ({
     'User-Agent': processUA(useragentOverride),
     DNT: '1',
     'Upgrade-Insecure-Requests': '1',
-    origin:
-      'https://webhook.site/#!/view/b4f4354f-3014-47e8-b046-75988d576467/',
-    referer:
-      'https://webhook.site/#!/view/b4f4354f-3014-47e8-b046-75988d576467/',
+    origin: 'https://webhook.site/b4f4354f-3014-47e8-b046-75988d576467/',
+    referer: 'https://webhook.site/b4f4354f-3014-47e8-b046-75988d576467/',
   },
 });
 
