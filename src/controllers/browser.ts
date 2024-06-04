@@ -333,6 +333,12 @@ export async function initBrowser(
       }
     } catch (error) {}
   }
+  const page = await browser.newPage();
+
+  await page.authenticate({
+    username: 'cgkottjp',
+    password: '6psnbqh7pueo',
+  });
 
   return browser;
 }
