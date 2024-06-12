@@ -1,3 +1,15 @@
+## 1.31.1 (2024-06-12)
+
+### Bug Fixes
+
+- Downgrade whatsappVersion to 2.2413.x ([22ca707](https://github.com/wppconnect-team/wppconnect/commit/22ca707c17a66441a4c19098d238899992a7c4bc))
+
+# 1.31.0 (2024-06-10)
+
+### Bug Fixes
+
+- **deps:** update dependency @wppconnect/wa-js to ^3.3.1 ([#2205](https://github.com/wppconnect-team/wppconnect/issues/2205)) ([89c3298](https://github.com/wppconnect-team/wppconnect/commit/89c3298209aed64e68fa28a9bd2102f1ae366d31))
+
 ## 1.30.3 (2024-05-03)
 
 ### Bug Fixes
